@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px gray;
+            width: 300px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 8px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            width: 85%;
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Simple Calculator</h2>
+        <input type="number" id="firstnumber" placeholder="Enter first number"><br>
+        <select id="operator">
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (*)</option>
+            <option value="/">Division (/)</option>
+        </select><br>
+        <input type="number" id="secondnumber" placeholder="Enter second number"><br>
+        <button onclick="calculate()">Calculate</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            let firstnumber = parseFloat(document.getElementById("firstnumber").value);
+            let secondnumber = parseFloat(document.getElementById("secondnumber").value);
+            let operator = document.getElementById("operator").value;
+            let result = "";
+
+            // Fixed variable names with spaces (firstnumber and secondnumber instead of first number)
+            if (isNaN(firstnumber) || isNaN(secondnumber)) {
+                result = "Please enter valid numbers.";
+            } else {
+                if (operator == "+") {
+                    result = "Result: " + (firstnumber + secondnumber);
+                } else if (operator == "-") {
+                    result = "Result: " + (firstnumber - secondnumber);
+                } else if (operator == "*") {
+                    result = "Result: " + (firstnumber * secondnumber);
+                } else if (operator == "/") {
+                    if (secondnumber == 0) {
+                        result = "Division by zero not possible.";
+                    } else {
+                        result = "Result: " + (firstnumber / secondnumber);
+                    }
+                } else {
+                    result = "Invalid operator.";
+                }
+            }
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</body>
+</html>
